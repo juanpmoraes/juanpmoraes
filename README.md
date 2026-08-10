@@ -101,6 +101,14 @@ Também desenvolvo para **mobile nativo Android**, com **2 aplicativos em produ�
 
 ## 📊 GitHub Stats
 
+<!--
+  Estas imagens usam as instâncias públicas compartilhadas do
+  github-readme-stats/streak-stats, que ocasionalmente ficam fora do ar
+  (a Vercel pausa o deploy público por volume de uso). Para ter uma URL
+  100% sob seu controle, hospede sua própria instância gratuita — veja o
+  passo a passo em .github/AUTOMATIONS.md ("GitHub Stats: instância
+  própria") — e troque os domínios abaixo pela sua URL do Vercel.
+-->
 <p align="center">
   <img height="165" src="https://github-readme-stats.vercel.app/api?username=juanpmoraes&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="Estatísticas do GitHub de juanpmoraes" />
   <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=juanpmoraes&layout=compact&theme=tokyonight&hide_border=true" alt="Linguagens mais usadas por juanpmoraes" />

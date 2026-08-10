@@ -35,6 +35,25 @@ configurações do repositório/organização).
 4. **Code security and analysis** — em `Settings → Code security and
    analysis`, confirme que *Dependabot alerts*, *Dependabot security
    updates* e *Secret scanning* (com *push protection*) estão habilitados.
+5. **GitHub Stats: instância própria** (opcional, mas recomendado) — as
+   imagens da seção "📊 GitHub Stats" do README usam instâncias públicas
+   compartilhadas (`github-readme-stats.vercel.app`,
+   `streak-stats.demolab.com`) que a Vercel/o mantenedor pausam de vez em
+   quando por volume de uso. Para ter uma URL só sua:
+   - Acesse <https://vercel.com/new>, importe (ou faça fork antes, em
+     <https://github.com/anuraghazra/github-readme-stats>) o repositório
+     `github-readme-stats` e clique em **Deploy** — não precisa configurar
+     nada, é gratuito no plano Hobby.
+   - Ao final você terá uma URL própria, algo como
+     `https://github-readme-stats-<seu-usuario>.vercel.app`.
+   - No `README.md`, troque `github-readme-stats.vercel.app` pela sua URL
+     nos dois `<img src=...>` da seção "GitHub Stats".
+   - (Opcional) Repita o processo com
+     <https://github.com/DenverCoder1/github-readme-streak-stats> para ter
+     sua própria URL de streak também.
+   - (Opcional) Para `count_private=true` contar contribuições privadas de
+     verdade, gere um Personal Access Token (escopo `repo`) e adicione como
+     variável de ambiente `PAT_1` no projeto na Vercel.
 
 Sem o passo 1, os steps do Claude (`claude-pr-review.yml` e
 `claude-assistant.yml`) rodam com `continue-on-error: true` — ou seja,
