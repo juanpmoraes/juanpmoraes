@@ -17,8 +17,7 @@ permissions:
 
 jobs:
   respond:
-    # Só roda depois que o secret ANTHROPIC_API_KEY existir (ver AUTOMATIONS.md).
-    if: contains(github.event.comment.body, '@claude') && secrets.ANTHROPIC_API_KEY != ''
+    if: contains(github.event.comment.body, '@claude')
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
@@ -29,6 +28,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Claude Code
+        # continue-on-error: o secrets context não pode ser testado em `if:`
+        # de job, então até o ANTHROPIC_API_KEY existir (ver AUTOMATIONS.md)
+        # este step falha sem derrubar o check da CI.
+        continue-on-error: true
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}

@@ -37,7 +37,7 @@ Tamb√©m desenvolvo para **mobile nativo Android**, com **2 aplicativos em produ√
 
 ## üõ†Ô∏è Stack
 
-#### Frontend
+### Frontend
 
 <div>
   <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js" />
@@ -48,21 +48,21 @@ Tamb√©m desenvolvo para **mobile nativo Android**, com **2 aplicativos em produ√
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" />
 </div>
 
-#### Back-end
+### Back-end
 
 <div>
   <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
   <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java" />
 </div>
 
-#### Mobile
+### Mobile
 
 <div>
   <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android" />
   <img src="https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white" alt="Kotlin" />
 </div>
 
-#### Banco de Dados
+### Banco de Dados
 
 <div>
   <img src="https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white" alt="SQL" />
@@ -71,7 +71,7 @@ Tamb√©m desenvolvo para **mobile nativo Android**, com **2 aplicativos em produ√
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
 </div>
 
-#### Ferramentas
+### Ferramentas
 
 <div>
   <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git" />

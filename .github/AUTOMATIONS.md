@@ -36,6 +36,7 @@ configurações do repositório/organização).
    analysis`, confirme que *Dependabot alerts*, *Dependabot security
    updates* e *Secret scanning* (com *push protection*) estão habilitados.
 
-Sem os passos 1–2, os workflows correspondentes ficam inofensivos (apenas
-não fazem nada / falham de forma visível), então não há risco em mergear
-este PR antes de configurá-los.
+Sem o passo 1, os steps do Claude (`claude-pr-review.yml` e
+`claude-assistant.yml`) rodam com `continue-on-error: true` — ou seja,
+falham de forma visível no log, mas não bloqueiam o merge do PR. Assim que
+o secret existir, eles passam a funcionar normalmente.
