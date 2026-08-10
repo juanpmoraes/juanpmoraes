@@ -17,7 +17,8 @@ permissions:
 
 jobs:
   respond:
-    if: contains(github.event.comment.body, '@claude')
+    # Só roda depois que o secret ANTHROPIC_API_KEY existir (ver AUTOMATIONS.md).
+    if: contains(github.event.comment.body, '@claude') && secrets.ANTHROPIC_API_KEY != ''
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner

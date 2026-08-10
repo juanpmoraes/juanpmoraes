@@ -18,6 +18,9 @@ concurrency:
 
 jobs:
   review:
+    # Só roda depois que o secret ANTHROPIC_API_KEY existir (ver AUTOMATIONS.md);
+    # sem isso o job fica "skipped" em vez de falhar a cada PR.
+    if: ${{ secrets.ANTHROPIC_API_KEY != '' }}
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
@@ -33,7 +36,7 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          direct_prompt: |
+          prompt: |
             Revise este pull request no repositório de perfil do GitHub de @juanpmoraes.
             Verifique especificamente:
             - Erros de Markdown/HTML e badges/links quebrados

@@ -21,5 +21,5 @@ Actions. Práticas de segurança adotadas nas automações:
 
 Se você encontrar um problema de segurança relacionado às automações deste
 repositório (por exemplo, exposição de segredos ou um workflow potencialmente
-malicioso em um PR), entre em contato em **juanpmoraes2@gmail.com** em vez de
-abrir uma issue pública.
+malicioso em um PR), entre em contato em **[juanpmoraes2@gmail.com](mailto:juanpmoraes2@gmail.com)**
+em vez de abrir uma issue pública.

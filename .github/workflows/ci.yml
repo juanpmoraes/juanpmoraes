@@ -42,9 +42,14 @@ jobs:
         with:
           # 401/403/404 aceitos porque links para repositórios privados e
           # perfis retornam esses códigos para visitantes não autenticados.
+          # github-readme-stats/streak-stats são serviços de terceiros que
+          # geram imagens dinâmicas e ocasionalmente respondem 503 sob rate
+          # limit — não são links quebrados, então ficam de fora da checagem.
           args: >-
             --no-progress
             --accept 200,201,202,203,204,301,302,401,403,404,429
+            --exclude "github-readme-stats\.vercel\.app"
+            --exclude "streak-stats\.demolab\.com"
             README.md
           fail: true
 
