@@ -112,6 +112,21 @@ Também desenvolvo para **mobile nativo Android**, com **2 aplicativos em produ�
 
 ---
 
+## 📌 Atividade recente
+
+<!--START_SECTION:activity-->
+<!--END_SECTION:activity-->
+
+*(atualizado automaticamente toda semana — veja [`.github/workflows/refresh-activity.yml`](.github/workflows/refresh-activity.yml))*
+
+---
+
+## 🤖 Automações deste repositório
+
+Este repositório é mantido com CI e IA: lint de Markdown, checagem de links quebrados, atualização automática de Dependabot (com auto-merge) e revisão de todo PR pelo Claude. Detalhes em [`.github/AUTOMATIONS.md`](.github/AUTOMATIONS.md) e política de segurança em [`SECURITY.md`](SECURITY.md).
+
+---
+
 <p align="center">
   <i>Aberto a oportunidades como Desenvolvedor Frontend / Full-stack — vamos conversar! 🚀</i>
 </p>
