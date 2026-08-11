@@ -1,0 +1,82 @@
+name: Refresh Recent Activity
+
+# Toda semana, busca a atividade pública recente do GitHub e, se houver
+# mudança, abre um PR automaticamente atualizando a seção
+# "Atividade recente" do README (marcada pelos comentários START/END abaixo).
+on:
+  schedule:
+    - cron: "0 6 * * 1" # toda segunda-feira às 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@v4
+
+      - name: Update activity section
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const { data: events } = await github.rest.activity.listPublicEventsForUser({
+              username: 'juanpmoraes',
+              per_page: 30,
+            });
+
+            const relevant = events.filter((e) =>
+              ['PushEvent', 'PullRequestEvent', 'IssuesEvent', 'CreateEvent'].includes(e.type)
+            );
+
+            const lines = relevant.slice(0, 5).map((e) => {
+              const date = new Date(e.created_at).toISOString().slice(0, 10);
+              const repo = e.repo.name;
+              const link = `[${repo}](https://github.com/${repo})`;
+              switch (e.type) {
+                case 'PushEvent':
+                  return `- 📦 \`${date}\` Push em ${link}`;
+                case 'PullRequestEvent':
+                  return `- 🔀 \`${date}\` Pull request ${e.payload.action} em ${link}`;
+                case 'IssuesEvent':
+                  return `- 📝 \`${date}\` Issue ${e.payload.action} em ${link}`;
+                case 'CreateEvent':
+                  return `- ✨ \`${date}\` Criou ${e.payload.ref_type} em ${link}`;
+                default:
+                  return null;
+              }
+            }).filter(Boolean);
+
+            const section = lines.length ? lines.join('\n') : '_Sem atividade pública recente._';
+            const readme = fs.readFileSync('README.md', 'utf8');
+            const marker = /<!--START_SECTION:activity-->[\s\S]*?<!--END_SECTION:activity-->/;
+            const replacement = `<!--START_SECTION:activity-->\n${section}\n<!--END_SECTION:activity-->`;
+
+            if (!marker.test(readme)) {
+              core.setFailed('Marcadores START_SECTION:activity/END_SECTION:activity não encontrados no README.');
+              return;
+            }
+
+            fs.writeFileSync('README.md', readme.replace(marker, replacement));
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/refresh-activity
+          delete-branch: true
+          commit-message: "chore: atualiza atividade recente do perfil"
+          title: "chore: atualiza atividade recente do perfil"
+          body: |
+            PR automático gerado pelo workflow **Refresh Recent Activity**.
+
+            ---
+            _Gerado automaticamente_

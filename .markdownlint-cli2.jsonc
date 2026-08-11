@@ -1,0 +1,11 @@
+{
+  "config": {
+    "default": true,
+    // README de perfil usa muito HTML puro (divs, badges, imgs) e linhas longas
+    // por causa de URLs de badges — desativa regras que não fazem sentido aqui.
+    "MD013": false,
+    "MD033": false,
+    "MD041": false
+  },
+  "globs": ["**/*.md"]
+}

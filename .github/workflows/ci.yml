@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  markdown-lint:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@v4
+
+      - name: Lint Markdown
+        uses: DavidAnson/markdownlint-cli2-action@v18
+        with:
+          globs: "**/*.md"
+
+  link-check:
+    name: Check Links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@v4
+
+      - name: Lychee Link Checker
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # 401/403/404 aceitos porque links para repositórios privados e
+          # perfis retornam esses códigos para visitantes não autenticados.
+          # github-readme-stats/streak-stats são serviços de terceiros que
+          # geram imagens dinâmicas e ocasionalmente respondem 503 sob rate
+          # limit — não são links quebrados, então ficam de fora da checagem.
+          args: >-
+            --no-progress
+            --accept 200,201,202,203,204,301,302,401,403,404,429
+            --exclude "github-readme-stats\.vercel\.app"
+            --exclude "streak-stats\.demolab\.com"
+            README.md
+          fail: true
+
+  actionlint:
+    name: Lint Workflows
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@v4
+
+      - name: Run actionlint
+        uses: raven-actions/actionlint@v2

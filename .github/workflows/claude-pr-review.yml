@@ -1,0 +1,48 @@
+name: Claude PR Review
+
+# Revisão automática de todo PR aberto/atualizado neste repositório.
+# Requer o segredo ANTHROPIC_API_KEY configurado em
+# Settings → Secrets and variables → Actions.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Claude Code Review
+        # continue-on-error: o secrets context não pode ser testado em `if:`
+        # de job, então até o ANTHROPIC_API_KEY existir (ver AUTOMATIONS.md)
+        # este step falha sem derrubar o check da CI.
+        continue-on-error: true
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            Revise este pull request no repositório de perfil do GitHub de @juanpmoraes.
+            Verifique especificamente:
+            - Erros de Markdown/HTML e badges/links quebrados
+            - Riscos de segurança (segredos expostos, links suspeitos, mudanças
+              perigosas em workflows do .github/)
+            - Clareza, consistência e ortografia do conteúdo em português
+            Comente no PR com observações objetivas e diga claramente se o PR
+            está pronto para merge ou se há algo bloqueante a corrigir.
