@@ -21,7 +21,7 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Update activity section
         uses: actions/github-script@v7
