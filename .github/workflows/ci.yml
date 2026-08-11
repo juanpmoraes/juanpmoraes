@@ -19,7 +19,7 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Lint Markdown
         uses: DavidAnson/markdownlint-cli2-action@v18
@@ -35,7 +35,7 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Lychee Link Checker
         uses: lycheeverse/lychee-action@v2
@@ -62,7 +62,7 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Run actionlint
         uses: raven-actions/actionlint@v2
