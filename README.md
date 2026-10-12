@@ -123,6 +123,7 @@ Também desenvolvo para **mobile nativo Android**, com **2 aplicativos em produ�
 ## 📌 Atividade recente
 
 <!--START_SECTION:activity-->
+_Sem atividade pública recente._
 <!--END_SECTION:activity-->
 
 *(atualizado automaticamente toda semana — veja [`.github/workflows/refresh-activity.yml`](.github/workflows/refresh-activity.yml))*
